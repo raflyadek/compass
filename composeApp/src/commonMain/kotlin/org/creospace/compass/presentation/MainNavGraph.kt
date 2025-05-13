@@ -15,7 +15,7 @@ fun MainNavGraph(navController: NavHostController) {
             MainScreen(navController = navController)
         }
         composable(route = Screens.CreateJournal.route) {
-            CreateJournalScreen()
+            CreateJournalScreen(navController = navController)
         }
     }
 }
