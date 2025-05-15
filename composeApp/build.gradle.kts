@@ -37,6 +37,7 @@ kotlin {
             implementation(libs.androidx.activity.compose)
             implementation(libs.ktor.client.android)
             implementation(libs.koin.android)
+            implementation(libs.koin.androidx.compose)
         }
         appleMain.dependencies {
             // Ktor client dependency required for iOS
@@ -49,16 +50,19 @@ kotlin {
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
-            implementation(libs.androidx.lifecycle.viewmodel)
-            implementation(libs.androidx.lifecycle.runtime.compose)
+
+
+
+            api(libs.koin.core)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.compose.viewmodel)
+            implementation(libs.lifecycle.viewmodel)
             implementation(libs.navigation.compose)
+            implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(libs.coil.compose)
             implementation(libs.coil.network.ktor)
             implementation(libs.androidx.room.runtime)
             implementation(libs.sqlite.bundled)
-            api(libs.koin.core)
-            implementation(libs.koin.compose)
-            implementation(libs.koin.compose.viewmodel)
         }
     }
 }

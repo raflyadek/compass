@@ -12,11 +12,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import org.creospace.compass.data.Journal
 import org.creospace.compass.presentation.components.BasicTextField
 import org.creospace.compass.presentation.components.Spacer
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun CreateJournalScreen(navController: NavController) {
+fun CreateJournalScreen(
+    navController: NavController,
+    viewModel: CreateJournalViewModel = koinViewModel()
+) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
@@ -51,7 +56,10 @@ fun CreateJournalScreen(navController: NavController) {
             Button(
                 modifier = Modifier.fillMaxWidth(),
                 onClick = {
-                   navController.popBackStack()
+                    viewModel.insertJournal(
+                        journal = Journal(title = "title", description = "description")
+                    )
+                    navController.popBackStack()
                 }
             ) {
                 Text(text = "Submit")
