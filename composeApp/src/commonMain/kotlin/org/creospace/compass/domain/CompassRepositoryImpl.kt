@@ -1,16 +1,13 @@
-package org.creospace.compass.data
+package org.creospace.compass.domain
 
 import kotlinx.coroutines.flow.Flow
+import org.creospace.compass.data.CompassRepository
+import org.creospace.compass.data.Journal
 import org.creospace.compass.data.room.JournalDao
 
-interface MyRepository {
-    fun getJournals(): Flow<List<Journal>>
-    suspend fun insertJournal(journal: Journal)
-}
-
-class MyRepositoryImpl(
+class CompassRepositoryImpl(
     private val dao: JournalDao
-) : MyRepository {
+) : CompassRepository {
 
     override fun getJournals(): Flow<List<Journal>> {
         return dao.getJournals()

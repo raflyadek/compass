@@ -14,10 +14,9 @@ import androidx.navigation.NavController
 import org.creospace.compass.presentation.Screens
 import org.creospace.compass.presentation.components.ItemJournal
 import org.koin.compose.viewmodel.koinViewModel
-import org.koin.core.annotation.KoinExperimentalAPI
 
 @Composable
-fun MainScreen(navController: NavController, viewModel: MyViewModel = koinViewModel()) {
+fun MainScreen(navController: NavController, viewModel: MainViewModel = koinViewModel()) {
 
     val journals by viewModel.journals.collectAsState()
     println("TEST: ${journals}")

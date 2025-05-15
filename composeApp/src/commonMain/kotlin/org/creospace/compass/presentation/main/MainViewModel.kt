@@ -4,13 +4,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import org.creospace.compass.data.Journal
-import org.creospace.compass.data.MyRepository
+import org.creospace.compass.data.CompassRepository
 
-class MyViewModel(
-    private val repository: MyRepository
+class MainViewModel(
+    private val repository: CompassRepository
 ) : ViewModel() {
 
     private val _journals = MutableStateFlow<List<Journal>>(emptyList())
