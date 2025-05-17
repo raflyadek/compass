@@ -1,5 +1,6 @@
 package org.creospace.compass.presentation.components
 
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,7 +26,10 @@ fun BasicTextField(
             value(it)
         },
         label = {
-            Text(text = label)
+            Text(
+                text = label,
+                style = MaterialTheme.typography.bodyMedium
+            )
         },
         singleLine = singleLine,
         modifier = modifier

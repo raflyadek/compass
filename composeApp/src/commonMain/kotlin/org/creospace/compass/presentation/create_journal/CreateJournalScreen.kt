@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import org.creospace.compass.data.Journal
 import org.creospace.compass.presentation.components.BasicTextField
+import org.creospace.compass.presentation.components.CompassButton
 import org.creospace.compass.presentation.components.Spacer
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -51,6 +52,7 @@ fun CreateJournalScreen(
                 .padding(innerPadding)
         ) {
             Spacer(margin = 8.dp)
+
             BasicTextField(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -60,7 +62,9 @@ fun CreateJournalScreen(
                     title = it
                 }
             )
+
             Spacer(margin = 8.dp)
+
             BasicTextField(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -71,20 +75,34 @@ fun CreateJournalScreen(
                     description = it
                 }
             )
+
             Spacer(margin = 24.dp)
-            Button(
+
+            CompassButton(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp),
+                title = "Create Journal",
                 onClick = {
                     viewModel.insertJournal(
                         journal = Journal(title = title, description = description)
                     )
                     navController.popBackStack()
                 }
-            ) {
-                Text(text = "Submit")
-            }
+            )
+//            Button(
+//                modifier = Modifier
+//                    .fillMaxWidth()
+//                    .padding(horizontal = 16.dp),
+//                onClick = {
+//                    viewModel.insertJournal(
+//                        journal = Journal(title = title, description = description)
+//                    )
+//                    navController.popBackStack()
+//                }
+//            ) {
+//                Text(text = "Submit")
+//            }
         }
     }
 }
