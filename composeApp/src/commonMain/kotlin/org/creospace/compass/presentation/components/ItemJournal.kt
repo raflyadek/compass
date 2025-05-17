@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun ItemJournal() {
+fun ItemJournal(title: String, description: String) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -19,8 +19,8 @@ fun ItemJournal() {
         Column(
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
-            Text(text = "Title")
-            Text(text = "Description")
+            Text(text = title)
+            Text(text = description)
         }
     }
 }

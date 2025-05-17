@@ -63,6 +63,9 @@ kotlin {
             implementation(libs.coil.network.ktor)
             implementation(libs.androidx.room.runtime)
             implementation(libs.sqlite.bundled)
+
+            implementation(libs.material.icons.extended)
+
         }
     }
 }

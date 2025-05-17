@@ -8,7 +8,7 @@ import org.creospace.compass.data.Journal
 
 @Dao
 interface JournalDao {
-    @Query("SELECT * FROM journal")
+    @Query("SELECT * FROM journal ORDER BY id DESC")
     fun getJournals(): Flow<List<Journal>>
 
     @Insert

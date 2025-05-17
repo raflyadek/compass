@@ -16,7 +16,7 @@ import org.creospace.compass.presentation.components.ItemJournal
 @Composable
 fun Preview_Internal() {
     Column(modifier = Modifier.fillMaxSize()) {
-        ItemJournal()
+        ItemJournal(title = "title", description = "description")
         BasicTextField(
             modifier = Modifier.fillMaxWidth().padding(16.dp),
             label = "Label"
