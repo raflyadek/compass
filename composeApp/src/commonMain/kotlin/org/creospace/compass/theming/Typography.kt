@@ -13,6 +13,15 @@ import compass.composeapp.generated.resources.Poppins_SemiBold
 import compass.composeapp.generated.resources.Res
 import org.jetbrains.compose.resources.Font
 
+
+@Composable
+fun CompssFont() {
+    val poppinsFont = FontFamily(
+        Font(Res.font.Poppins_Bold, FontWeight.Bold)
+    )
+}
+
+
 @Composable
 fun AppTypography(): Typography{
     val poppins = FontFamily(
@@ -37,7 +46,7 @@ fun AppTypography(): Typography{
             fontFamily = poppins,
             fontWeight = FontWeight.Medium,
             fontSize = 14.sp
-        )
+        ),
     )
 }
 

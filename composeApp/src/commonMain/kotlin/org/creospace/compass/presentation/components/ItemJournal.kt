@@ -22,7 +22,7 @@ fun ItemJournal(title: String, description: String) {
         ) {
             Text(
                 text = title,
-                style = MaterialTheme.typography.headlineLarge
+                style = MaterialTheme.typography.displaySmall
             )
             Text(
                 text = description,

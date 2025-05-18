@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import org.creospace.compass.data.Journal
 import org.creospace.compass.presentation.components.BasicTextField
+import org.creospace.compass.presentation.components.CompassAppBar
 import org.creospace.compass.presentation.components.CompassButton
 import org.creospace.compass.presentation.components.Spacer
 import org.koin.compose.viewmodel.koinViewModel
@@ -35,13 +36,10 @@ fun CreateJournalScreen(
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
-            TopAppBar(
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    titleContentColor = MaterialTheme.colorScheme.primary,
-                ),
-                title = {
-                    Text("Create Journal")
+            CompassAppBar(
+                title = "Create Journal",
+                onBackClick = {
+                    navController.popBackStack()
                 }
             )
         }
@@ -90,19 +88,6 @@ fun CreateJournalScreen(
                     navController.popBackStack()
                 }
             )
-//            Button(
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .padding(horizontal = 16.dp),
-//                onClick = {
-//                    viewModel.insertJournal(
-//                        journal = Journal(title = title, description = description)
-//                    )
-//                    navController.popBackStack()
-//                }
-//            ) {
-//                Text(text = "Submit")
-//            }
         }
     }
 }
