@@ -9,5 +9,6 @@ fun getCompassDatabase(builder: RoomDatabase.Builder<CompassDatabase>): CompassD
     return builder
         .setDriver(BundledSQLiteDriver())
         .setQueryCoroutineContext(Dispatchers.IO)
+        .addMigrations()
         .build()
 }

@@ -21,3 +21,4 @@ val viewModelModule = module {
     viewModelOf(::MainViewModel)
     viewModelOf(::CreateJournalViewModel)
 }
+
