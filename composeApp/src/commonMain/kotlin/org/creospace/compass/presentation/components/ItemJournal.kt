@@ -10,6 +10,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import org.creospace.compass.AppLogger
+import org.koin.core.logger.Logger
 
 @Composable
 fun ItemJournal(title: String, description: String, toDetail: () -> Unit) {
@@ -17,7 +19,9 @@ fun ItemJournal(title: String, description: String, toDetail: () -> Unit) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp)
-            .clickable { toDetail() }
+            .clickable {
+                toDetail()
+            }
     ) {
         Column(
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)

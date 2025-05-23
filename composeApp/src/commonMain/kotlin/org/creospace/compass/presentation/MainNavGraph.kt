@@ -6,6 +6,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import org.creospace.compass.AppLogger
 import org.creospace.compass.data.Journal
 import org.creospace.compass.presentation.create_journal.CreateJournalScreen
 import org.creospace.compass.presentation.detail_journal.DetailJournalScreen
@@ -20,12 +21,13 @@ fun MainNavGraph(navController: NavHostController) {
 
     NavHost(navController = navController, startDestination = Screens.Main.route) {
         val navigateToDetail: (Journal) -> Unit = { journal ->
+            AppLogger.d("PassID", "Navigating To DetailScreen/${journal.id}")
             navController.navigate("DetailJournalScreen/${journal.id}")
         }
         composable(route = Screens.Main.route) {
             MainScreen(
                 navController = navController,
-                toDetail = navigateToDetail
+                toDetail = navigateToDetail,
             )
         }
         composable(route = Screens.CreateJournal.route) {
