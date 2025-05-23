@@ -1,8 +1,10 @@
 package org.creospace.compass.data.room
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 import org.creospace.compass.data.Journal
 
@@ -13,4 +15,13 @@ interface JournalDao {
 
     @Insert
     suspend fun insert(journal: Journal)
+
+    @Query("SELECT * FROM journal WHERE id = :id")
+    fun getJournalById(id: Long): Flow<Journal>
+
+    @Delete
+    suspend fun delete(journal: Journal)
+
+    @Update
+    suspend fun update(journal: Journal)
 }

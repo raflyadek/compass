@@ -13,8 +13,20 @@ class CompassRepositoryImpl(
         return dao.getJournals()
     }
 
+    override fun getJournalById(id: Long): Flow<Journal> {
+        return dao.getJournalById(id)
+    }
+
     override suspend fun insertJournal(journal: Journal) {
         dao.insert(journal)
+    }
+
+    override suspend fun deleteJournal(journal: Journal) {
+        dao.delete(journal)
+    }
+
+    override suspend fun updateJournal(journal: Journal) {
+        dao.update(journal)
     }
 
 }

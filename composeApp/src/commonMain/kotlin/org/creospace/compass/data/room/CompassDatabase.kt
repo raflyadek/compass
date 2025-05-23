@@ -6,7 +6,7 @@ import androidx.room.RoomDatabase
 import androidx.room.RoomDatabaseConstructor
 import org.creospace.compass.data.Journal
 
-@Database(entities = [Journal::class], version = 1)
+@Database(entities = [Journal::class], version = 3, exportSchema = false)
 @ConstructedBy(CompassDatabaseConstructor::class)
 abstract class CompassDatabase : RoomDatabase() {
     abstract fun getJournalDao(): JournalDao

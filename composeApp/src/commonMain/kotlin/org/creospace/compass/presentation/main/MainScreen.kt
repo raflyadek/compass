@@ -28,6 +28,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import org.creospace.compass.data.Journal
 import org.creospace.compass.presentation.Screens
 import org.creospace.compass.presentation.components.ItemJournal
 import org.creospace.compass.presentation.components.Spacer
@@ -37,7 +38,7 @@ import org.koin.compose.viewmodel.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(navController: NavController, viewModel: MainViewModel = koinViewModel()) {
+fun MainScreen(navController: NavController, viewModel: MainViewModel = koinViewModel(), toDetail: (Journal) -> Unit) {
 
     val journals by viewModel.journals.collectAsState()
 
@@ -69,8 +70,9 @@ fun MainScreen(navController: NavController, viewModel: MainViewModel = koinView
                 items(journals.size) { index ->
                     val journal = journals[index]
                     ItemJournal(
-                        title = journal.title,
-                        description = journal.description
+                        title = journal.title.orEmpty(),
+                        description = journal.description.orEmpty(),
+                        toDetail = {toDetail(journal)}
                     )
                 }
             }

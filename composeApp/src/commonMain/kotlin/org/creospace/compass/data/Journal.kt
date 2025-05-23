@@ -7,6 +7,6 @@ import androidx.room.PrimaryKey
 data class Journal(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0L,
-    val title: String,
-    val description: String
+    val title: String? = "",
+    val description: String? = ""
 )
