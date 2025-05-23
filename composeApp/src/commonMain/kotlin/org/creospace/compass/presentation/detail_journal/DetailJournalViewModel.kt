@@ -8,34 +8,20 @@ import androidx.lifecycle.viewModelScope
 import org.creospace.compass.data.CompassRepository
 import org.creospace.compass.data.Journal
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
-sealed interface DetailUiState {
-    data class Success(val detail: Journal) : DetailUiState
-    object Error : DetailUiState
-    object Loading : DetailUiState
-}
 
 class DetailJournalViewModel(
     private val repository: CompassRepository,
-    val id: Long
 ) : ViewModel() {
 
-    var detailUiState: DetailUiState by mutableStateOf(DetailUiState.Loading)
-        private set
-
-    init {
-        getJournalDetail(id)
-    }
-
-    private fun getJournalDetail(id: Long) {
-        viewModelScope.launch {
-            repository.getJournalsById(id).map {
-                it.isNotEmpty()
-            }
-        }
+    fun getDetailById(id: Long): StateFlow<Journal?> {
+        return repository.getJournalsById(id)
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(1000), null)
     }
 }

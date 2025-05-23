@@ -13,7 +13,7 @@ class CompassRepositoryImpl(
         return dao.getJournals()
     }
 
-    override fun getJournalsById(id: Long): Flow<List<Journal>> {
+    override fun getJournalsById(id: Long): Flow<Journal> {
         return dao.getJournalsById(id)
     }
 

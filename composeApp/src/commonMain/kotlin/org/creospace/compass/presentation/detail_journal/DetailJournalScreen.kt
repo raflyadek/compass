@@ -26,10 +26,12 @@ import org.koin.compose.viewmodel.koinViewModel
 @Composable
 fun DetailJournalScreen(
     modifier: Modifier = Modifier,
-    detailUiState: DetailUiState,
+    viewModel: DetailJournalViewModel = koinViewModel(),
+    id: Long,
     navController: NavController
 ) {
 
+    val journal by viewModel.getDetailById(id).collectAsState()
     Scaffold(
         topBar = {
             CompassAppBar(
@@ -43,14 +45,7 @@ fun DetailJournalScreen(
                 .fillMaxWidth()
                 .padding(innerPadding)
         ) {
-            when (detailUiState) {
-                is DetailUiState.Loading -> CircularProgressIndicator()
-                is DetailUiState.Success ->
-                    DetailJournalScreenContent(
-                        journal = detailUiState.detail
-                    )
-                else -> {}
-            }
+            DetailJournalScreenContent(journal = journal!!)
         }
     }
 }

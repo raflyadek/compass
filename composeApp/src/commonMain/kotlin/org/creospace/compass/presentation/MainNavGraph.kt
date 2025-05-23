@@ -40,7 +40,7 @@ fun MainNavGraph(navController: NavHostController) {
             val detailJournalViewModel = koinViewModel<DetailJournalViewModel>(parameters = { parametersOf(id) })
             DetailJournalScreen(
                 navController = navController,
-                detailUiState = detailJournalViewModel.detailUiState
+                id = id
             )
         }
     }
