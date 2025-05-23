@@ -35,7 +35,7 @@ fun DetailJournalScreen(
     Scaffold(
         topBar = {
             CompassAppBar(
-                title = "Journal Details",
+                title = Screens.DetailJournal.title,
                 onBackClick = { navController.popBackStack() },
             )
         }

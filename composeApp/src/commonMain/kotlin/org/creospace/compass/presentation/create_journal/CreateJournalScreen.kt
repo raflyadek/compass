@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import org.creospace.compass.data.Journal
+import org.creospace.compass.presentation.Screens
 import org.creospace.compass.presentation.components.BasicTextField
 import org.creospace.compass.presentation.components.CompassAppBar
 import org.creospace.compass.presentation.components.CompassButton
@@ -37,7 +38,7 @@ fun CreateJournalScreen(
         modifier = Modifier.fillMaxSize(),
         topBar = {
             CompassAppBar(
-                title = "Create Journal",
+                title = Screens.CreateJournal.title,
                 onBackClick = {
                     navController.popBackStack()
                 }

@@ -21,7 +21,7 @@ class DetailJournalViewModel(
 ) : ViewModel() {
 
     fun getDetailById(id: Long): StateFlow<Journal?> {
-        return repository.getJournalsById(id)
+        return repository.getJournalById(id)
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(1000), null)
     }
 }
