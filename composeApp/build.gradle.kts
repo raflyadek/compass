@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.room)
     alias(libs.plugins.ksp)
+    kotlin("plugin.serialization") version "2.1.21"
 }
 
 kotlin {
@@ -66,6 +67,7 @@ kotlin {
 
             implementation(libs.material.icons.extended)
 
+            implementation(libs.kotlinx.serialization.json)
         }
     }
 }
