@@ -23,6 +23,7 @@ import androidx.navigation.NavController
 import org.creospace.compass.data.Journal
 import org.creospace.compass.presentation.Screens
 import org.creospace.compass.presentation.components.CompassAppBar
+import org.creospace.compass.presentation.components.ExpandedFloatingActionButton
 import org.creospace.compass.presentation.components.Spacer
 import org.creospace.compass.presentation.components.TextMedium
 import org.creospace.compass.presentation.components.TextRegular
@@ -43,7 +44,18 @@ fun DetailJournalScreen(
 
     Scaffold(
         floatingActionButton = {
-
+            ExpandedFloatingActionButton(
+                navController = navController,
+                deleteClick = {
+                    viewModel.deleteJournal(
+                        journal = Journal(
+                            id = journal!!.id,
+                            title = journal?.title,
+                            description = journal?.description
+                        )
+                    )
+                }
+            )
         },
         topBar = {
             CompassAppBar(
