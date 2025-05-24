@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,6 +23,7 @@ import androidx.navigation.NavController
 import org.creospace.compass.data.Journal
 import org.creospace.compass.presentation.Screens
 import org.creospace.compass.presentation.components.CompassAppBar
+import org.creospace.compass.presentation.components.ExpandedFloatingActionButton
 import org.creospace.compass.presentation.components.Spacer
 import org.creospace.compass.presentation.components.TextMedium
 import org.creospace.compass.presentation.components.TextRegular
@@ -40,6 +43,20 @@ fun DetailJournalScreen(
 
 
     Scaffold(
+        floatingActionButton = {
+            ExpandedFloatingActionButton(
+                navController = navController,
+                deleteClick = {
+                    viewModel.deleteJournal(
+                        journal = Journal(
+                            id = journal!!.id,
+                            title = journal?.title,
+                            description = journal?.description
+                        )
+                    )
+                }
+            )
+        },
         topBar = {
             CompassAppBar(
                 title = journal?.title.orEmpty(),
@@ -65,16 +82,16 @@ fun DetailJournalScreen(
 fun DetailJournalScreenContent(modifier: Modifier = Modifier, journal: Journal) {
     Column(
         modifier = Modifier
-            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 8.dp)
     ) {
-        TextMedium(
-            text = journal.title.orEmpty() ,
-            modifier = Modifier.fillMaxWidth()
+        Text(
+            text = journal.title.orEmpty(),
+            style = MaterialTheme.typography.displaySmall
         )
-        Spacer(margin = 10.dp)
-
-        TextRegular(
-            text = journal.description.orEmpty()
+        Spacer(6.dp)
+        Text(
+            text = journal.description.orEmpty(),
+            style = MaterialTheme.typography.bodyMedium
         )
     }
 }

@@ -25,4 +25,10 @@ class DetailJournalViewModel(
             .getJournalById(id)
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(1000), null)
     }
+
+    fun deleteJournal(journal: Journal) {
+        viewModelScope.launch {
+            repository.deleteJournal(journal)
+        }
+    }
 }
