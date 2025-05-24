@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -40,6 +42,9 @@ fun DetailJournalScreen(
 
 
     Scaffold(
+        floatingActionButton = {
+
+        },
         topBar = {
             CompassAppBar(
                 title = journal?.title.orEmpty(),
@@ -65,16 +70,16 @@ fun DetailJournalScreen(
 fun DetailJournalScreenContent(modifier: Modifier = Modifier, journal: Journal) {
     Column(
         modifier = Modifier
-            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 8.dp)
     ) {
-        TextMedium(
-            text = journal.title.orEmpty() ,
-            modifier = Modifier.fillMaxWidth()
+        Text(
+            text = journal.title.orEmpty(),
+            style = MaterialTheme.typography.displaySmall
         )
-        Spacer(margin = 10.dp)
-
-        TextRegular(
-            text = journal.description.orEmpty()
+        Spacer(6.dp)
+        Text(
+            text = journal.description.orEmpty(),
+            style = MaterialTheme.typography.bodyMedium
         )
     }
 }
