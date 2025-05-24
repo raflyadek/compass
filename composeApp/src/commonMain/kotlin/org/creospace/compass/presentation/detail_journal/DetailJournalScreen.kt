@@ -41,19 +41,13 @@ fun DetailJournalScreen(
     val detailFlow = remember(id) { viewModel.getDetailById(id) }
     val journal by detailFlow.collectAsState()
 
-
     Scaffold(
         floatingActionButton = {
             ExpandedFloatingActionButton(
                 navController = navController,
                 deleteClick = {
-                    viewModel.deleteJournal(
-                        journal = Journal(
-                            id = journal!!.id,
-                            title = journal?.title,
-                            description = journal?.description
-                        )
-                    )
+                    journal?.let { viewModel.deleteJournal(it) }
+                    navController.popBackStack()
                 }
             )
         },
@@ -70,7 +64,7 @@ fun DetailJournalScreen(
                 .padding(innerPadding)
         ) {
             if (journal != null) {
-                DetailJournalScreenContent(journal = journal!!)
+                DetailJournalScreenContent(journal = journal)
             } else {
                 Text("Loading...")
             }
@@ -79,18 +73,18 @@ fun DetailJournalScreen(
 }
 
 @Composable
-fun DetailJournalScreenContent(modifier: Modifier = Modifier, journal: Journal) {
+fun DetailJournalScreenContent(modifier: Modifier = Modifier, journal: Journal?) {
     Column(
         modifier = Modifier
             .padding(horizontal = 16.dp, vertical = 8.dp)
     ) {
         Text(
-            text = journal.title.orEmpty(),
+            text = journal?.title.orEmpty(),
             style = MaterialTheme.typography.displaySmall
         )
         Spacer(6.dp)
         Text(
-            text = journal.description.orEmpty(),
+            text = journal?.description.orEmpty(),
             style = MaterialTheme.typography.bodyMedium
         )
     }

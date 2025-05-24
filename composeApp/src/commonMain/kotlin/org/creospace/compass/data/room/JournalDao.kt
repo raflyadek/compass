@@ -17,7 +17,7 @@ interface JournalDao {
     suspend fun insert(journal: Journal)
 
     @Query("SELECT * FROM journal WHERE id = :id")
-    fun getJournalById(id: Long): Flow<Journal>
+    fun getJournalById(id: Long): Flow<Journal?>
 
     @Delete
     suspend fun delete(journal: Journal)
