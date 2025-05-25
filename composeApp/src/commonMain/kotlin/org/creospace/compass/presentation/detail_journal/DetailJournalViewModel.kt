@@ -20,6 +20,7 @@ class DetailJournalViewModel(
     private val repository: CompassRepository,
 ) : ViewModel() {
 
+
     fun getDetailById(id: Long): StateFlow<Journal?> {
         return repository
             .getJournalById(id)

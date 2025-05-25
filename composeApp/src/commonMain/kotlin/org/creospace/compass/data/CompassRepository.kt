@@ -5,7 +5,7 @@ import org.creospace.compass.data.room.JournalDao
 
 interface CompassRepository {
     fun getJournals(): Flow<List<Journal>>
-    fun getJournalById(id: Long): Flow<Journal>
+    fun getJournalById(id: Long): Flow<Journal?>
     suspend fun insertJournal(journal: Journal)
     suspend fun deleteJournal(journal: Journal)
     suspend fun updateJournal(journal: Journal)

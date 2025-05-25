@@ -46,14 +46,15 @@ fun ExpandedFloatingActionButton(
         MiniFabItems(
             Icons.Filled.Edit,
             "Edit",
-            onClick = { navController.navigate(Screens.CreateJournal.route) }
+            onClick = {
+                navController.navigate(Screens.CreateJournal.route)
+            }
         ),
         MiniFabItems(
             Icons.Filled.Delete,
             "Delete",
             onClick = {
                 deleteClick()
-                navController.popBackStack()
             }
         )
     )
@@ -76,7 +77,7 @@ fun ExpandedFloatingActionButton(
         }
 
         FloatingActionButton(
-            onClick = {expanded = !expanded},
+            onClick = { expanded = !expanded},
             containerColor = primaryLight
         ) {
             Icon(
