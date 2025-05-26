@@ -50,19 +50,20 @@ fun ExpandedFloatingActionButton(
     var expanded by remember { mutableStateOf(false) }
     val items = listOf(
         MiniFabItems(
-            Icons.Outlined.Delete,
-            "Delete",
+            icon = Icons.Outlined.Delete,
+            title = "Delete",
+            color = MaterialTheme.colorScheme.errorContainer,
             onClick = {
                 deleteClick()
             }
         ),
         MiniFabItems(
-            Icons.Outlined.Edit,
-            "Edit",
+            icon = Icons.Outlined.Edit,
+            title = "Edit",
+            color = MaterialTheme.colorScheme.tertiaryContainer,
             onClick = {
                 navController.navigate(Screens.CreateJournal.route)
             },
-//            color = MaterialTheme.colorScheme.primary
         )
     )
     Column(horizontalAlignment = Alignment.End) {
@@ -73,7 +74,7 @@ fun ExpandedFloatingActionButton(
         ) {
             LazyColumn(Modifier.padding(bottom = 8.dp)) {
                 items(items.size) {
-                    ItemFloatingActionButton(icon = items[it].icon, title = items[it].title, onClick = items[it].onClick)
+                    ItemFloatingActionButton(icon = items[it].icon, title = items[it].title, onClick = items[it].onClick, color = items[it].color)
                     Spacer(2.dp)
                 }
             }
@@ -97,7 +98,7 @@ fun ExpandedFloatingActionButton(
 }
 
 @Composable
-fun ItemFloatingActionButton(modifier: Modifier = Modifier, icon: ImageVector, title: String, onClick: () -> Unit) {
+fun ItemFloatingActionButton(modifier: Modifier = Modifier, icon: ImageVector, title: String, onClick: () -> Unit, color: Color) {
     ExtendedFloatingActionButton(
         modifier = Modifier
             .clip(RoundedCornerShape(50.dp))
@@ -105,7 +106,7 @@ fun ItemFloatingActionButton(modifier: Modifier = Modifier, icon: ImageVector, t
         onClick = {
             onClick()
         },
-//        containerColor =
+        containerColor = color
     ) {
         Icon(imageVector = icon, contentDescription = "")
         Spacer(2.dp)
@@ -116,5 +117,5 @@ data class MiniFabItems(
     val icon: ImageVector,
     val title: String,
     val onClick: () -> Unit,
-//    val color: Color
+    val color: Color
 )
