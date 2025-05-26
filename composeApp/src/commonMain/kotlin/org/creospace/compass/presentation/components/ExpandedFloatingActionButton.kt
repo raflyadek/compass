@@ -10,6 +10,7 @@ import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -72,7 +73,7 @@ fun ExpandedFloatingActionButton(
             enter = fadeIn() + slideInVertically(initialOffsetY = {it}),
             exit = fadeOut() + slideOutVertically(targetOffsetY = {it})
         ) {
-            LazyColumn(Modifier.padding(bottom = 8.dp)) {
+            LazyColumn(Modifier.padding(bottom = 4.dp), horizontalAlignment = Alignment.End) {
                 items(items.size) {
                     ItemFloatingActionButton(icon = items[it].icon, title = items[it].title, onClick = items[it].onClick, color = items[it].color)
                     Spacer(2.dp)
@@ -86,7 +87,8 @@ fun ExpandedFloatingActionButton(
 
         FloatingActionButton(
             onClick = { expanded = !expanded},
-            containerColor = primaryLight
+            containerColor = primaryLight,
+            shape = CircleShape
         ) {
             Icon(
                 imageVector = Icons.Filled.Add,
@@ -108,9 +110,9 @@ fun ItemFloatingActionButton(modifier: Modifier = Modifier, icon: ImageVector, t
         },
         containerColor = color
     ) {
-        Icon(imageVector = icon, contentDescription = "")
+        Icon(imageVector = icon, contentDescription = "", tint = Color.Black)
         Spacer(2.dp)
-        Text(text = title)
+        Text(text = title, color = Color.Black)
     }
 }
 data class MiniFabItems(
