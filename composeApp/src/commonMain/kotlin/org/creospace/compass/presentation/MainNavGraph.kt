@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import org.creospace.compass.presentation.create_journal.CreateJournalScreen
 import org.creospace.compass.presentation.detail_journal.DetailJournalScreen
+import org.creospace.compass.presentation.edit_journal.EditJournalScreen
 import org.creospace.compass.presentation.main.MainScreen
 
 @Composable
@@ -30,6 +31,16 @@ fun MainNavGraph(navController: NavHostController) {
         composable<Screens.DetailJournal> { backStackEntry ->
             val journalId: Screens.DetailJournal = backStackEntry.toRoute()
             DetailJournalScreen(
+                navController = navController,
+                id = journalId.journalId,
+                toEdit = {
+                    navController.navigate(Screens.EditJournal(journalId = it.id))
+                }
+            )
+        }
+        composable<Screens.EditJournal>{ backStackEntry ->
+            val journalId: Screens.EditJournal = backStackEntry.toRoute()
+            EditJournalScreen(
                 navController = navController,
                 id = journalId.journalId
             )

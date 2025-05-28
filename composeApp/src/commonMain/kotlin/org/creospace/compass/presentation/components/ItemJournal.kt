@@ -32,6 +32,7 @@ fun ItemJournal(title: String, description: String, toDetail: () -> Unit) {
             )
             Text(
                 text = description,
+
                 style = MaterialTheme.typography.bodyMedium
             )
         }

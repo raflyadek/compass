@@ -10,13 +10,18 @@ import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.outlined.Delete
+import androidx.compose.material.icons.outlined.Edit
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -25,7 +30,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -39,23 +46,26 @@ import org.koin.compose.viewmodel.koinViewModel
 fun ExpandedFloatingActionButton(
     modifier: Modifier = Modifier,
     navController: NavController,
-    deleteClick : () -> Unit
+    deleteClick : () -> Unit,
+    toEdit: () -> Unit
 ) {
     var expanded by remember { mutableStateOf(false) }
     val items = listOf(
         MiniFabItems(
-            Icons.Filled.Edit,
-            "Edit",
-            onClick = {
-                navController.navigate(Screens.CreateJournal.route)
-            }
-        ),
-        MiniFabItems(
-            Icons.Filled.Delete,
-            "Delete",
+            icon = Icons.Outlined.Delete,
+            title = "Delete",
+            color = MaterialTheme.colorScheme.errorContainer,
             onClick = {
                 deleteClick()
             }
+        ),
+        MiniFabItems(
+            icon = Icons.Outlined.Edit,
+            title = "Edit",
+            color = MaterialTheme.colorScheme.tertiaryContainer,
+            onClick = {
+                toEdit()
+            },
         )
     )
     Column(horizontalAlignment = Alignment.End) {
@@ -64,10 +74,10 @@ fun ExpandedFloatingActionButton(
             enter = fadeIn() + slideInVertically(initialOffsetY = {it}),
             exit = fadeOut() + slideOutVertically(targetOffsetY = {it})
         ) {
-            LazyColumn(Modifier.padding(bottom = 8.dp)) {
+            LazyColumn(Modifier.padding(bottom = 4.dp), horizontalAlignment = Alignment.End) {
                 items(items.size) {
-                    ItemFloatingActionButton(icon = items[it].icon, title = items[it].title, onClick = items[it].onClick)
-                    Spacer(8.dp)
+                    ItemFloatingActionButton(icon = items[it].icon, title = items[it].title, onClick = items[it].onClick, color = items[it].color)
+                    Spacer(2.dp)
                 }
             }
         }
@@ -78,7 +88,8 @@ fun ExpandedFloatingActionButton(
 
         FloatingActionButton(
             onClick = { expanded = !expanded},
-            containerColor = primaryLight
+            containerColor = primaryLight,
+            shape = CircleShape
         ) {
             Icon(
                 imageVector = Icons.Filled.Add,
@@ -90,18 +101,24 @@ fun ExpandedFloatingActionButton(
 }
 
 @Composable
-fun ItemFloatingActionButton(modifier: Modifier = Modifier, icon: ImageVector, title: String, onClick: () -> Unit) {
+fun ItemFloatingActionButton(modifier: Modifier = Modifier, icon: ImageVector, title: String, onClick: () -> Unit, color: Color) {
     ExtendedFloatingActionButton(
+        modifier = Modifier
+            .clip(RoundedCornerShape(50.dp))
+        ,
         onClick = {
             onClick()
         },
+        containerColor = color
     ) {
-        Text(text = title)
-        Icon(imageVector = icon, contentDescription = "")
+        Icon(imageVector = icon, contentDescription = "", tint = Color.Black)
+        Spacer(2.dp)
+        Text(text = title, color = Color.Black)
     }
 }
 data class MiniFabItems(
     val icon: ImageVector,
     val title: String,
-    val onClick: () -> Unit
+    val onClick: () -> Unit,
+    val color: Color
 )

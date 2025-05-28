@@ -34,7 +34,8 @@ fun DetailJournalScreen(
     modifier: Modifier = Modifier,
     viewModel: DetailJournalViewModel = koinViewModel(),
     id: Long,
-    navController: NavController
+    navController: NavController,
+    toEdit: (Journal) -> Unit
 ) {
     println("TEST ID: $id")
 
@@ -48,6 +49,9 @@ fun DetailJournalScreen(
                 deleteClick = {
                     journal?.let { viewModel.deleteJournal(it) }
                     navController.popBackStack()
+                },
+                toEdit = {
+                    journal?.let { toEdit(it) }
                 }
             )
         },
