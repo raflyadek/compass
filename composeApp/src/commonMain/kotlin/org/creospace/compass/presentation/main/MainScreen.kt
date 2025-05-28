@@ -53,16 +53,19 @@ import org.koin.compose.viewmodel.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(navController: NavController, viewModel: MainViewModel = koinViewModel(), toDetail: (Journal) -> Unit) {
+fun MainScreen(
+    navController: NavController,
+    viewModel: MainViewModel = koinViewModel(),
+    toCreateJournal: () -> Unit,
+    toDetail: (Journal) -> Unit
+) {
 
     val journals by viewModel.journals.collectAsState()
 
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
-                onClick = {
-                    navController.navigate(Screens.CreateJournal.route)
-                },
+                onClick = toCreateJournal,
                 containerColor = primaryLight,
                 contentColor = Color.White
             ) {

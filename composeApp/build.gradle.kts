@@ -39,6 +39,8 @@ kotlin {
             implementation(libs.ktor.client.android)
             implementation(libs.koin.android)
             implementation(libs.koin.androidx.compose)
+
+            implementation("androidx.media3:media3-exoplayer:1.7.1")
         }
         appleMain.dependencies {
             // Ktor client dependency required for iOS

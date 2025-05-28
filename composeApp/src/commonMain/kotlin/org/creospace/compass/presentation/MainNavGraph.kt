@@ -9,6 +9,7 @@ import org.creospace.compass.presentation.create_journal.CreateJournalScreen
 import org.creospace.compass.presentation.detail_journal.DetailJournalScreen
 import org.creospace.compass.presentation.edit_journal.EditJournalScreen
 import org.creospace.compass.presentation.main.MainScreen
+import org.creospace.compass.presentation.music.MusicScreen
 
 @Composable
 fun MainNavGraph(navController: NavHostController) {
@@ -20,6 +21,10 @@ fun MainNavGraph(navController: NavHostController) {
         composable(route = Screens.Main.route) {
             MainScreen(
                 navController = navController,
+                toCreateJournal = {
+//                    navController.navigate(Screens.CreateJournal.route)
+                    navController.navigate(Screens.MusicScreen.route)
+                },
                 toDetail = {
                     navController.navigate(Screens.DetailJournal(journalId = it.id))
                 },
@@ -44,6 +49,9 @@ fun MainNavGraph(navController: NavHostController) {
                 navController = navController,
                 id = journalId.journalId
             )
+        }
+        composable(route = Screens.MusicScreen.route) {
+            MusicScreen(navController = navController)
         }
     }
 }
