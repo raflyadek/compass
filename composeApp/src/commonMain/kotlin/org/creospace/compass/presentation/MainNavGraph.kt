@@ -22,8 +22,8 @@ fun MainNavGraph(navController: NavHostController) {
             MainScreen(
                 navController = navController,
                 toCreateJournal = {
-//                    navController.navigate(Screens.CreateJournal.route)
-                    navController.navigate(Screens.MusicScreen.route)
+                    navController.navigate(Screens.CreateJournal.route)
+//                    navController.navigate(Screens.MusicScreen.route)
                 },
                 toDetail = {
                     navController.navigate(Screens.DetailJournal(journalId = it.id))
