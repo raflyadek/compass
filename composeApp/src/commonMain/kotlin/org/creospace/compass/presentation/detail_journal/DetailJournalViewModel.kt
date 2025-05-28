@@ -32,4 +32,11 @@ class DetailJournalViewModel(
             repository.deleteJournal(journal)
         }
     }
+
+    fun updateJournal(journal: Journal) {
+        viewModelScope.launch {
+            repository.updateJournal(journal)
+        }
+    }
+
 }

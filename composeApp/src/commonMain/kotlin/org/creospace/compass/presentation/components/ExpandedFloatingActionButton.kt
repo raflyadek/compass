@@ -46,7 +46,8 @@ import org.koin.compose.viewmodel.koinViewModel
 fun ExpandedFloatingActionButton(
     modifier: Modifier = Modifier,
     navController: NavController,
-    deleteClick : () -> Unit
+    deleteClick : () -> Unit,
+    toEdit: () -> Unit
 ) {
     var expanded by remember { mutableStateOf(false) }
     val items = listOf(
@@ -63,7 +64,7 @@ fun ExpandedFloatingActionButton(
             title = "Edit",
             color = MaterialTheme.colorScheme.tertiaryContainer,
             onClick = {
-                navController.navigate(Screens.CreateJournal.route)
+                toEdit()
             },
         )
     )
